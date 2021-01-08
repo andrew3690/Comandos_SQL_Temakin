@@ -1,0 +1,53 @@
+## Procedures para realizaçao de subtotal dos clientes
+
+## subtotal de extras
+DELIMITER //
+create procedure REALIZA_SUBTOTAL_EXTRAS()
+begin
+	select round(sum(Preço_extra),3) from Extras;
+end //
+DELIMITER ;
+
+DElIMITER //
+CREATE PROCEDURE REALIZA_SUBTOTAL_BEBIDAS()
+BEGIN
+  SELECT ROUND(SUM(Preço_bebidas),3) FROM Bebidas;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE REALIZA_SUBTOTAL_RODIZIO(Preço float)
+BEGIN
+	SELECT Preço from DUAL;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE REALIZA_SUBTOTAL_PEDIDOS_A_LA_CARTE()
+BEGIN
+	SELECT ROUND(SUM(PREÇO_PRATO),3) FROM Pedido_rodizio;
+END //
+DELIMITER ;
+
+
+ALTER TABLE Pedido_rodizio ADD PREÇO_PRATO FLOAT;
+    
+SELECT * FROM Pedido_rodizio;
+
+desc Pedido_rodizio;
+
+show procedure status;
+
+DROP procedure Realizar_subtotal_bebidas;
+
+drop procedure realiza_subtotal_extras;
+
+insert into Extras (extrasid,nome,Preço_extra) VALUES(1,'Coca',12.20),(0,'Caipirinha',15.50);
+
+call realiza_subtotal_extras();
+
+show tables from Temakin_prototype;
+
+select * from Extras;
+
+desc Extras;
